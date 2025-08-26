@@ -1,0 +1,36 @@
+
+    body{
+      text-align: center;
+      margin-left: 30%;
+      margin-top: 8%;
+      background-color: antiquewhite;
+    }
+  .but{
+height: 100px;
+width: 100px;
+border: none;
+margin:10px ;
+background-color: rgb(165, 242, 153);
+border-radius: 50px;
+cursor: pointer;
+margin-top: 40px;
+border: 2px rgb(14, 148, 14) dotted ;
+  }
+  .img{
+    height: 75px;
+  }
+  #game{
+    background-color: aquamarine;
+    width: 60%;
+   border-radius: 15px;
+   border: 3px green dotted ;
+    
+      
+  }
+
+  .reset-button{
+    background-color: rgb(165, 242, 153);
+    margin-bottom: 20px;
+    margin-top: 50px;
+    border-radius: 5px;
+  }

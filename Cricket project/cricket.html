@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cricket game</title>
+  
+  <link rel="stylesheet" href="cricket.css">
+</head>
+<body>
+  <div id="game">
+  <h1>Bat Ball Stump Game</h1>
+  
+  <!-- Bat button -->
+  <button class="but" onclick="
+    let com=generateCom();
+  
+    let result=whoWon(com,'Bat');
+    display('Bat',com,result);
+  "><img src="images/bat.png" alt="Bat" class="img"></button>
+
+  <!-- Ball button -->
+  <button class="but" onclick="
+   com=generateCom();
+  
+     result=whoWon(com,'Ball');
+   display('Ball',com,result);
+  "><img src="images/ball.png" alt="Ball" class="img"></button>
+
+  <!-- Stump button -->
+  <button class="but" onclick="
+     com=generateCom();
+  
+      result=whoWon(com,'Stump');
+    display('Stump',com,result);
+    
+  "><img src="images/stump.png" alt="Stump" class="img"></button>
+
+  
+  <h1 id="user"></h1>
+  <h1 id="com"></h1>
+  <h1 id="scor"></h1>
+  <h1 id="res"></h1>
+
+
+  <button onclick="localStorage.clear()
+  resetscore();
+  " class="reset-button">Reset</button>
+  </div>
+<script>
+  
+
+
+  function generateCom(){
+ random=Math.random()*3;
+     
+    if(random>0 && random<=1){
+      return 'Bat';
+    }else if(random>1 && random<=2){
+      return 'Ball';
+    }else{
+      return 'Stump';
+    }
+  }
+let scorestr=localStorage.getItem('Score');
+let score;
+resetscore(scorestr);
+
+ function resetscore(scorestr){
+     score=scorestr? JSON.parse(scorestr) : {
+win:0,
+loss:0,
+tie:0,
+
+};
+score.dis=function(){
+  return `Won:${score.win}, Loss:${score.loss}, Tie:${score.tie}`;
+}
+display();
+   }
+
+
+
+
+  function whoWon(com,user){
+    if(user==='Stump'){
+if(com==='Bat'){
+  score.win++;
+          return'user won';
+        }else if(com==='Ball'){
+          score.loss++;
+          return'computer won';
+        }else{
+          score.tie++;
+          return 'its a tie';
+        }
+    }
+    else if(user==='Ball'){
+if(com==='Bat'){
+  score.loss++;
+      return 'computer won';
+    }else if(com==='Ball'){
+       score.tie++;
+      return 'its a tie';
+    }else{
+      score.win++;
+      return 'user won';
+    }
+    }
+    else{
+if(com==='Bat'){
+   score.tie++;
+      return'its a tie';
+    }else if(com==='Ball'){
+      score.win++;
+      return'user won';
+    }else{
+      score.loss++;
+      return'computer won';
+    }
+    }
+    
+  }
+   function display(user,com,result){
+    localStorage.setItem('Score',JSON.stringify(score));
+   document.querySelector('#user').innerText = user!==undefined?`You have chosen ${user}`:'';
+document.querySelector('#com').innerText =com!==undefined? `Computer has chosen ${com}`:'';
+document.querySelector('#res').innerText = result!==undefined?result:'';
+document.querySelector('#scor').innerText = score.dis();
+
+
+   }
+</script>
+</body>
+</html>
